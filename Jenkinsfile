@@ -41,10 +41,11 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv("${SONARQUBE_SERVER}") {
-                    withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_AUTH_TOKEN')]) {
-                        sh './mvnw sonar:sonar -Dsonar.token=$SONAR_AUTH_TOKEN'
-                    }
+                withSonarQubeEnv(
+                    installationName: "${SONARQUBE_SERVER}",
+                    credentialsId: 'sonarqube-token'
+                ) {
+                    sh './mvnw sonar:sonar'
                 }
             }
         }
