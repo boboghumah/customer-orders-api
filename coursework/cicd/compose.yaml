@@ -5,6 +5,7 @@ services:
       args:
         DOCKER_GID: "20"
     container_name: jenkins
+    user: "0:0"
     ports:
       - "8081:8080"
       - "50000:50000"
