@@ -44,6 +44,7 @@ pipeline {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
                     withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_AUTH_TOKEN')]) {
                         sh './mvnw sonar:sonar -Dsonar.token=$SONAR_AUTH_TOKEN'
+                    }
                 }
             }
         }
