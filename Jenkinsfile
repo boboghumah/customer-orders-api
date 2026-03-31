@@ -42,7 +42,8 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
-                    sh './mvnw sonar:sonar -Dsonar.token=$SONAR_AUTH_TOKEN'
+                    withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_AUTH_TOKEN')]) {
+                        sh './mvnw sonar:sonar -Dsonar.token=$SONAR_AUTH_TOKEN'
                 }
             }
         }
