@@ -45,7 +45,7 @@ pipeline {
                     installationName: "${SONARQUBE_SERVER}",
                     credentialsId: 'sonarqube-token'
                 ) {
-                    sh './mvnw sonar:sonar'
+                    sh './mvnw sonar:sonar -Dsonar.projectKey=customer-orders-api -Dsonar.projectName=customer-orders-api'
                 }
             }
         }
