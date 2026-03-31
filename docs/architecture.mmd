@@ -1,0 +1,17 @@
+flowchart LR
+    U["Developer"]
+    G["GitHub Repository"]
+    J["Jenkins Pipeline"]
+    S["SonarQube"]
+    D["Docker Engine"]
+    A["customer-orders-api Container"]
+    H["H2 In-Memory Database"]
+    C["API Consumer"]
+
+    U -->|push code| G
+    G -->|webhook / SCM checkout| J
+    J -->|build, test, analyze| S
+    J -->|docker build and deploy| D
+    D --> A
+    A --> H
+    C -->|HTTP requests| A

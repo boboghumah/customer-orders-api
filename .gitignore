@@ -4,7 +4,11 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-docs/
+docs/*
+!docs/ContinuousBuild26_Report.md
+!docs/Screencast_Runbook.md
+!docs/architecture.mmd
+!docs/pipeline.mmd
 .continue/
 
 ### STS ###
