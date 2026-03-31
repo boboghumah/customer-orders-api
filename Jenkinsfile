@@ -10,6 +10,7 @@ pipeline {
         IMAGE_NAME = 'customer-orders-api'
         CONTAINER_NAME = 'customer-orders-api'
         APP_PORT = '8080'
+        HEALTH_HOST = 'host.docker.internal'
         SONARQUBE_SERVER = 'SonarQube'
     }
 
@@ -76,6 +77,7 @@ pipeline {
                     IMAGE_TAG="${IMAGE_TAG}" \
                     CONTAINER_NAME="${CONTAINER_NAME}" \
                     HOST_PORT="${APP_PORT}" \
+                    HEALTH_HOST="${HEALTH_HOST}" \
                     ./scripts/deploy-local.sh
                 '''
             }
@@ -88,7 +90,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'curl --fail --silent http://localhost:${APP_PORT}/actuator/health'
+                sh 'curl --fail --silent http://${HEALTH_HOST}:${APP_PORT}/actuator/health'
             }
         }
     }
