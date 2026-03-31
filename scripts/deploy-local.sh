@@ -8,8 +8,9 @@ CONTAINER_NAME="${CONTAINER_NAME:-customer-orders-api}"
 HOST_PORT="${HOST_PORT:-8080}"
 CONTAINER_PORT="${CONTAINER_PORT:-8080}"
 HEALTH_URL="${HEALTH_URL:-http://localhost:${HOST_PORT}/actuator/health}"
-MAX_ATTEMPTS="${MAX_ATTEMPTS:-30}"
-SLEEP_SECONDS="${SLEEP_SECONDS:-2}"
+MAX_ATTEMPTS="${MAX_ATTEMPTS:-90}"
+SLEEP_SECONDS="${SLEEP_SECONDS:-3}"
+STARTUP_GRACE_SECONDS="${STARTUP_GRACE_SECONDS:-10}"
 
 FULL_IMAGE_NAME="${IMAGE_NAME}:${IMAGE_TAG}"
 
@@ -25,6 +26,9 @@ docker run -d \
   --name "${CONTAINER_NAME}" \
   -p "${HOST_PORT}:${CONTAINER_PORT}" \
   "${FULL_IMAGE_NAME}"
+
+echo "Giving the application ${STARTUP_GRACE_SECONDS}s to start before health checks..."
+sleep "${STARTUP_GRACE_SECONDS}"
 
 echo "Waiting for health endpoint ${HEALTH_URL}..."
 attempt=1
