@@ -1,6 +1,6 @@
 # customer-orders-api
 
-Spring Boot microservice for managing customers and their orders, packaged as a coursework CI/CD example using GitHub, Jenkins, SonarQube, Maven, and Docker.
+Spring Boot microservice for managing customers and their orders, packaged as a coursework CI/CD example using GitHub, Jenkins, SonarQube, Maven, and "Docker".
 
 ## Application Overview
 
